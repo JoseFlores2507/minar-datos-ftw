@@ -2,6 +2,7 @@
 #Limpieza (Eliminar columnas y filas que no serviran)
 
 from distutils.command.clean import clean
+import os
 import requests
 import io
 import pandas as pd
@@ -36,7 +37,14 @@ df.drop(df[df['yearpublished'] < 1900].index, inplace = True)
 
 is_multi = df["yearpublished"].value_counts() > 1
 df = df[df["yearpublished"].isin(is_multi[is_multi].index)]
-print(df)
 
-df.to_csv('practica_2/cleaned_info.csv' ,index=False)
-df.to_csv('cleaned_info.csv' ,index=False)
+df = df.rename(columns={'Board Game Rank': 'boardGameRank'})
+
+
+if not os.path.exists('csv'):
+    os.makedirs('csv')
+    
+df.to_csv('csv/cleaned_info.csv' ,index=False)
+
+df = df[['yearpublished','average']]
+df.to_csv('csv/reviewsYear.csv', index=False)

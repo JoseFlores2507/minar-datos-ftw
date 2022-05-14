@@ -8,6 +8,7 @@ from typing import Tuple, List
 import matplotlib.pyplot as plt
 import numpy as np
 import statistics as est
+import os
 
 
 #funcion que genera una lista(años) de listas(reviews)
@@ -27,7 +28,7 @@ def stdDev(yearList):
     return stdDevList
         
 
-df = pd.read_csv("cleaned_info.csv")
+df = pd.read_csv("csv/cleaned_info.csv")
 
 
 #primera grafica
@@ -50,6 +51,16 @@ scatter2 = plt.scatter(x, y, color='#2874A6', label='boards year average')
 plt.ylabel("Score", fontsize=14, labelpad=15)
 plt.legend(loc='upper left')
 
+max_df = pd.read_csv('csv/maxYear.csv')
+x = max_df['yearpublished'].to_numpy()
+y = max_df['maxYear'].to_numpy()
+scatter3 = plt.scatter(x, y, color='#34DB97', label='max year average')
+
+min_df = pd.read_csv('csv/minYear.csv')
+x = min_df['yearpublished'].to_numpy()
+y = min_df['minYear'].to_numpy()
+scatter4 = plt.scatter(x, y, color='#8034DB', label='min year average')
+
 plt.twinx()
 y = stdDev(yearly)
 plot1 = plt.plot(x,y, label = 'desviación')
@@ -70,6 +81,9 @@ plt.xlabel("Score", fontsize=14, labelpad=15)
 plt.ylabel("Owned", fontsize=14, labelpad=15)
 plt.legend(loc='upper left')
 
-plt.savefig('graficas_data_analysis.png', dpi=72)
-plt.savefig('practica_3/graficas_data_analysis.png', dpi=72)
-plt.show()
+
+if not os.path.exists('img'):
+    os.makedirs('img')
+
+plt.savefig('img/graficas_data_analysis.png', dpi=72)
+plt.close()

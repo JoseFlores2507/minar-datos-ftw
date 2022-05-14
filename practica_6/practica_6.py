@@ -7,7 +7,6 @@ from tabulate import tabulate
 
 
 
-#funcion que genera una lista(años) de listas(reviews)
 def print_tabulate(df: pd.DataFrame):
     print(tabulate(df, headers=df.columns, tablefmt="orgtbl"))
 
@@ -28,11 +27,11 @@ def linear_regression(df: pd.DataFrame, x:str, y: str)->None:
     plt.plot(df[x],[pd.DataFrame.mean(df[y]) for _ in fixed_x.items()], color='green')
     plt.plot(df_by_year[x],[ coef.values[1] * x + coef.values[0] for _, x in fixed_x.items()], color='red')
     plt.xticks(rotation=90)
-    plt.savefig(f'lr_{y}_{x}.png')
+    plt.savefig(f'img/lr_{y}_{x}.png')
     plt.show()
 
 
-df = pd.read_csv("cleaned_info.csv")
+df = pd.read_csv("csv/cleaned_info.csv")
 
 #print_tabulate(df.head(50))
 df_by_year = df.groupby("yearpublished")\

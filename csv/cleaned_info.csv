@@ -1,4 +1,4 @@
-id,primary,yearpublished,minplayers,maxplayers,playingtime,minplaytime,maxplaytime,minage,usersrated,average,bayesaverage,Board Game Rank,stddev,owned,trading,wanting,wishing,numcomments
+id,primary,yearpublished,minplayers,maxplayers,playingtime,minplaytime,maxplaytime,minage,usersrated,average,bayesaverage,boardGameRank,stddev,owned,trading,wanting,wishing,numcomments
 30549,Pandemic,2008,2,4,45,45,45,8,109006,7.58896,7.486689999999999,106,1.32857,168364,2508,625,9344,17305
 822,Carcassonne,2000,2,5,45,30,45,7,108776,7.4183699999999995,7.30857,191,1.30532,161299,1716,582,7383,19263
 13,Catan,1995,3,4,120,60,120,10,108064,7.13598,6.96965,429,1.48179,167733,2018,485,5890,19402

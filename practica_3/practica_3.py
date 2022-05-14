@@ -26,7 +26,7 @@ def stdDev(yearList):
     return stdDevList
         
 
-df = pd.read_csv("cleaned_info.csv")
+df = pd.read_csv("csv/cleaned_info.csv")
 
 
 
@@ -38,7 +38,19 @@ scatXY = np.column_stack((year,avg))
 lista_year = list(set(scatXY[:,0]))
 yearly = year_list(scatXY, lista_year)
 
-#medias
+#calcula la media y desviacion de esta manera antes de conocer la funcion que use min_by_year
 meanList = [est.mean(yearly[x]) for x in range(len(yearly))]
 #desviacion estandar
 SDList = stdDev(yearly)
+
+min_by_year = df.groupby("yearpublished")\
+    .aggregate(minYear=pd.NamedAgg(column="average", aggfunc=pd.DataFrame.min))
+min_by_year.to_csv('csv/minYear.csv' ,index=True)
+
+max_by_year = df.groupby("yearpublished")\
+    .aggregate(maxYear=pd.NamedAgg(column="average", aggfunc=pd.DataFrame.max))
+max_by_year.to_csv('csv/maxYear.csv' ,index=True)
+
+boards_by_year = df.groupby("yearpublished").size()
+boards_by_year.to_csv('csv/boardYear.csv' ,index=True)
+
